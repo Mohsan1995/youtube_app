@@ -14,9 +14,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import niya.mohsan.youtube.R;
+import niya.mohsan.video.R;
 import niya.mohsan.youtube.adapters.YoutubeAdapter;
-import niya.mohsan.youtube.model.Youtube;
+import niya.mohsan.youtube.model.Video;
 import niya.mohsan.youtube.network.YoutubeProvider;
 import niya.mohsan.youtube.network.YoutubeService;
 import retrofit2.Call;
@@ -44,17 +44,17 @@ public class FragmentList extends Fragment {
 
         YoutubeService youtubeService = YoutubeProvider.get();
 
-        Call<List<Youtube>> call = youtubeService.listYoutube();
+        Call<List<Video>> call = youtubeService.listYoutube();
 
-        call.enqueue(new Callback<List<Youtube>>() {
+        call.enqueue(new Callback<List<Video>>() {
             @Override
-            public void onResponse(Call<List<Youtube>> call, Response<List<Youtube>> response) {
+            public void onResponse(Call<List<Video>> call, Response<List<Video>> response) {
                 Log.e("MainActivity", response.body().get(0).getName());
                 recyclerView.setAdapter(new YoutubeAdapter(response.body()));
             }
 
             @Override
-            public void onFailure(Call<List<Youtube>> call, Throwable t) {
+            public void onFailure(Call<List<Video>> call, Throwable t) {
 
             }
         });

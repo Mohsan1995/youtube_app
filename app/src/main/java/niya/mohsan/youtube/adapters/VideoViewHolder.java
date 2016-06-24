@@ -10,9 +10,9 @@ import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import niya.mohsan.youtube.R;
+import niya.mohsan.video.R;
 import niya.mohsan.youtube.VideoDetailActivity;
-import niya.mohsan.youtube.model.Youtube;
+import niya.mohsan.youtube.model.Video;
 
 /**
  * Created by mohsan on 22/06/16.
@@ -29,7 +29,7 @@ public class VideoViewHolder extends RecyclerView.ViewHolder {
     }
 
 
-    public void bind(final Youtube video){
+    public void bind(final Video video){
         tvtitle.setText(video.getName());
         Glide.with(imageView.getContext()).load(video.getImageUrl()).centerCrop().fitCenter().into(imageView);
         imageView.setOnClickListener(new View.OnClickListener() {

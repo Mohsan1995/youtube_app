@@ -7,19 +7,19 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import niya.mohsan.youtube.R;
-import niya.mohsan.youtube.model.Youtube;
+import niya.mohsan.video.R;
+import niya.mohsan.youtube.model.Video;
 
 /**
  * Created by mohsan on 22/06/16.
  */
 public class YoutubeAdapter extends RecyclerView.Adapter<VideoViewHolder> {
 
-    List<Youtube> youtubeList;
+    List<Video> videoList;
 
 
-    public YoutubeAdapter(List<Youtube> list){
-        this.youtubeList = list;
+    public YoutubeAdapter(List<Video> list){
+        this.videoList = list;
     }
 
     @Override
@@ -31,13 +31,13 @@ public class YoutubeAdapter extends RecyclerView.Adapter<VideoViewHolder> {
     @Override
     public void onBindViewHolder(VideoViewHolder holder, int position) {
 
-        Youtube youtube = youtubeList.get(position);
-        holder.bind(youtube);
+        Video video = videoList.get(position);
+        holder.bind(video);
 
     }
 
     @Override
     public int getItemCount() {
-        return youtubeList.size();
+        return videoList.size();
     }
 }

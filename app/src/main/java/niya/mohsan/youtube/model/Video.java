@@ -11,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by mohsan on 19/06/16.
  */
 
-public class Youtube implements Parcelable{
+public class Video implements Parcelable{
 
     @SerializedName("id")
     @Expose
@@ -29,7 +29,7 @@ public class Youtube implements Parcelable{
     @Expose
     private String videoUrl;
 
-    protected Youtube(Parcel in) {
+    protected Video(Parcel in) {
         id = in.readString();
         name = in.readString();
         description = in.readString();
@@ -37,15 +37,15 @@ public class Youtube implements Parcelable{
         videoUrl = in.readString();
     }
 
-    public static final Creator<Youtube> CREATOR = new Creator<Youtube>() {
+    public static final Creator<Video> CREATOR = new Creator<Video>() {
         @Override
-        public Youtube createFromParcel(Parcel in) {
-            return new Youtube(in);
+        public Video createFromParcel(Parcel in) {
+            return new Video(in);
         }
 
         @Override
-        public Youtube[] newArray(int size) {
-            return new Youtube[size];
+        public Video[] newArray(int size) {
+            return new Video[size];
         }
     };
 
@@ -158,7 +158,7 @@ public class Youtube implements Parcelable{
 
     @Override
     public String toString() {
-        return "Youtube{" +
+        return "Video{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

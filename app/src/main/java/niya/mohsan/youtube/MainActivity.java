@@ -6,6 +6,7 @@ import android.widget.FrameLayout;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import niya.mohsan.video.R;
 import niya.mohsan.youtube.fragment.MainFragment;
 
 public class MainActivity extends AppCompatActivity {

@@ -2,7 +2,7 @@ package niya.mohsan.youtube.network;
 
 import java.util.List;
 
-import niya.mohsan.youtube.model.Youtube;
+import niya.mohsan.youtube.model.Video;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -13,7 +13,7 @@ public interface YoutubeService {
     static String END_POINT = "https://raw.githubusercontent.com/florent37/MyYoutube/master/";
 
     @GET("myyoutube.json")
-    Call<List<Youtube>> listYoutube();
+    Call<List<Video>> listYoutube();
 
 
 }

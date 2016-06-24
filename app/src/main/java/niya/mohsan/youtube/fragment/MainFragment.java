@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import niya.mohsan.youtube.R;
+import niya.mohsan.video.R;
 import niya.mohsan.youtube.adapters.ViewPagerAdapter;
 
 /**
