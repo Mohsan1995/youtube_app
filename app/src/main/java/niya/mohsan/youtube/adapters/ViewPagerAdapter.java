@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import niya.mohsan.youtube.FragmentList;
+import niya.mohsan.youtube.fragment.FragmentList;
 
 /**
  * Created by mohsan on 24/06/16.

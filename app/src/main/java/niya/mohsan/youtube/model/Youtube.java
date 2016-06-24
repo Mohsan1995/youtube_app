@@ -1,6 +1,9 @@
 package niya.mohsan.youtube.model;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +11,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by mohsan on 19/06/16.
  */
 
-public class Youtube {
+public class Youtube implements Parcelable{
 
     @SerializedName("id")
     @Expose
@@ -25,6 +28,26 @@ public class Youtube {
     @SerializedName("videoUrl")
     @Expose
     private String videoUrl;
+
+    protected Youtube(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        description = in.readString();
+        imageUrl = in.readString();
+        videoUrl = in.readString();
+    }
+
+    public static final Creator<Youtube> CREATOR = new Creator<Youtube>() {
+        @Override
+        public Youtube createFromParcel(Parcel in) {
+            return new Youtube(in);
+        }
+
+        @Override
+        public Youtube[] newArray(int size) {
+            return new Youtube[size];
+        }
+    };
 
     /**
      *
@@ -116,4 +139,31 @@ public class Youtube {
         this.videoUrl = videoUrl;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeString(imageUrl);
+        dest.writeString(videoUrl);
+
+    }
+
+
+    @Override
+    public String toString() {
+        return "Youtube{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", videoUrl='" + videoUrl + '\'' +
+                '}';
+    }
 }

@@ -1,4 +1,4 @@
-package niya.mohsan.youtube;
+package niya.mohsan.youtube.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import niya.mohsan.youtube.R;
 import niya.mohsan.youtube.adapters.ViewPagerAdapter;
 
 /**
