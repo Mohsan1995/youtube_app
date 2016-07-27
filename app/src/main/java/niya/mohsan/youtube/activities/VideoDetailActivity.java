@@ -21,6 +21,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -68,7 +71,6 @@ public class VideoDetailActivity extends AppCompatActivity {
         this.realm = RealmController.getInstance(this).getRealm();
 
         Glide.with(this).load(video.getImageUrl()).centerCrop().fitCenter().into(imageView);
-        this.toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
         actionBar = getSupportActionBar();
         actionBar.setTitle(video.getName());
@@ -86,7 +88,6 @@ public class VideoDetailActivity extends AppCompatActivity {
 
 
         if(appPreferenceTools.getVideoFavorite(video.getId())){
-            Log.e(TAG, "FAVORI : "+ video.getId());
             this.floatingActionButton.setImageDrawable(ContextCompat.getDrawable(this,android.R.drawable.btn_star_big_on));
         }else{
             this.floatingActionButton.setImageDrawable(ContextCompat.getDrawable(this,android.R.drawable.btn_star_big_off));
@@ -103,7 +104,6 @@ public class VideoDetailActivity extends AppCompatActivity {
     }
 
     private void actionFavorite() {
-        Log.e(TAG, "FAVORI : "+ video.getId());
         if(this.appPreferenceTools.getVideoFavorite(video.getId())){
             this.floatingActionButton.setImageDrawable(ContextCompat.getDrawable(this,android.R.drawable.btn_star_big_off));
             this.appPreferenceTools.removeFavorite(video.getId());
@@ -117,13 +117,59 @@ public class VideoDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.lecture)
     public void lecture(){
+
         this.realm.beginTransaction();
         this.realm.copyToRealm(video);
         this.realm.commitTransaction();
 
-        Toast.makeText(VideoDetailActivity.this, video.getVideoUrl(), Toast.LENGTH_SHORT).show();
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getVideoUrl()));
-        startActivity(browserIntent);
+        //Toast.makeText(VideoDetailActivity.this, video.getVideoUrl(), Toast.LENGTH_SHORT).show();
+        //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getVideoUrl()));
+        Intent intent =new Intent(this, VideoPlayerActivity.class);
+        intent.putExtra("url",getYouTubeVideoId(video.getVideoUrl()));
+        startActivity(intent);
 
+    }
+
+
+    public static String getYouTubeVideoId(String video_url) {
+
+        if (video_url != null && video_url.length() > 0) {
+
+            Uri video_uri = Uri.parse(video_url);
+            String video_id = video_uri.getQueryParameter("v");
+
+            if (video_id == null)
+                video_id = parseYoutubeVideoId(video_url);
+
+            return video_id;
+        }
+        return null;
+    }
+
+
+    public static String parseYoutubeVideoId(String youtubeUrl)
+    {
+        String video_id = null;
+        if (youtubeUrl != null && youtubeUrl.trim().length() > 0 &&
+                youtubeUrl.startsWith("http"))
+        {
+            // ^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/
+            String expression = "^.*((youtu.be" + "\\/)"
+                    + "|(v\\/)|(\\/u\\/w\\/)|(embed\\/)|(watch\\?))\\??v?=?([^#\\&\\?]*).*";
+            CharSequence input = youtubeUrl;
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(input);
+            if (matcher.matches())
+            {
+                // Regular expression some how doesn't work with id with "v" at
+                // prefix
+                String groupIndex1 = matcher.group(7);
+                if (groupIndex1 != null && groupIndex1.length() == 11)
+                    video_id = groupIndex1;
+                else if (groupIndex1 != null && groupIndex1.length() == 10)
+                    video_id = "v" + groupIndex1;
+            }
+        }
+        return video_id;
     }
 }

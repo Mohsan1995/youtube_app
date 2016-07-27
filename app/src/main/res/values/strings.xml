@@ -3,4 +3,5 @@
     <string name="lire_video">lire video</string>
     <string name="add_favourite">La vidéo a été ajouté en favoris</string>
     <string name="remove_favorite">La vidéo a été supprimé des favoris</string>
+    <string name="error_player">Erreur lors de l\'initialisation de youtube</string>
 </resources>

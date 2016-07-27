@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/AppTheme.NoActionBar"
     xmlns:tools="http://schemas.android.com/tools"
@@ -85,7 +86,9 @@
                     <Button
                         android:id="@+id/lecture"
                         android:text="@string/lire_video"
-                        android:layout_width="wrap_content"
+                        style="@style/CustomButtonStyle"
+                        android:layout_gravity="center"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
