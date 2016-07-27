@@ -21,7 +21,6 @@
             android:name="niya.mohsan.youtube.activities.VideoDetailActivity"/>
 
         <activity
-            android:theme="@style/AppTheme.NoActionBar"
             android:name="niya.mohsan.youtube.activities.VideoPlayerActivity"/>
 
     </application>

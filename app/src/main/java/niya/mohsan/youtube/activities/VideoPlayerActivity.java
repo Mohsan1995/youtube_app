@@ -3,6 +3,7 @@ package niya.mohsan.youtube.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
@@ -15,6 +16,7 @@ import com.google.android.youtube.player.YouTubePlayerView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import niya.mohsan.video.R;
 import niya.mohsan.youtube.utils.Config;
 
@@ -26,7 +28,6 @@ public class VideoPlayerActivity extends YouTubeBaseActivity implements
 
 
     @BindView(R.id.youtube_view) YouTubePlayerView youTubePlayerView;
-    @BindView(R.id.toolbar) Toolbar toolbar;
     private static final int RECOVERY_DIALOG_REQUEST = 1;
     String url;
 
@@ -36,12 +37,8 @@ public class VideoPlayerActivity extends YouTubeBaseActivity implements
         setContentView(R.layout.activity_video_player);
         ButterKnife.bind(this);
 
-        url = getIntent().getStringExtra("url");
-        youTubePlayerView.initialize(Config.DEVELOPER_KEY, this);
 
-
-        addContentView(youTubePlayerView, new RecyclerView.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT,
-                RecyclerView.LayoutParams.MATCH_PARENT));
+        youTubePlayerView.initialize(Config.DEVELOPER_KEY,this);
 
 
     }
@@ -77,4 +74,10 @@ public class VideoPlayerActivity extends YouTubeBaseActivity implements
     private YouTubePlayer.Provider getYouTubePlayerProvider() {
         return (YouTubePlayerView) findViewById(R.id.youtube_view);
     }
+
+    @OnClick(R.id.detailVideo)
+    public void goBack(){
+        startActivity(new Intent(this,MainActivity.class));
+    }
+
 }

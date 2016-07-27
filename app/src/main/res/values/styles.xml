@@ -34,7 +34,7 @@
         <item name="android:gravity" >center</item>
         <item name="android:layout_margin" >3dp</item>
         <item name="android:radius">2dp</item>
-        <item name="android:textSize" >5pt</item>
+        <item name="android:textSize" >15dp</item>
         <item name="android:background">#7078ff10</item>
         <item name="android:shadowColor" >#1d78ff10</item>
     </style>
