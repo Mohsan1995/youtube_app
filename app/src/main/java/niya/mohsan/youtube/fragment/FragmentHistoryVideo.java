@@ -32,20 +32,17 @@ public class FragmentHistoryVideo extends Fragment {
     @BindView(R.id.recylerView) RecyclerView recyclerView;
     private List<Video> listVideoHistory = new ArrayList<>();
     private YoutubeAdapter youtubeAdapter;
-    private Realm realm;
     private RealmController realmController;
+    private Realm realm;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_list, container, false);
         ButterKnife.bind(this,v);
-
-
-        realmController = RealmController.getInstance();
-
-        realm = RealmController.with(getContext()).getRealm();
-        RealmResults<Video> video = realm.where(Video.class).findAll();
+        realmController = RealmController.getInstance(getContext());
+        realm = realmController.getRealm();
+        RealmResults<Video> video = realmController.getVideoHistory();
 
         videoToList(video);
 

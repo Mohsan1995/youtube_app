@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -38,6 +40,7 @@ public class VideoDetailActivity extends AppCompatActivity {
     static final String TAG = "VideoDetailActivity";
 
     @BindView(R.id.main_content) CoordinatorLayout coordinatorLayout;
+    @BindView(R.id.collapsingToolbar) CollapsingToolbarLayout collapsingToolbarLayout;
     @BindView(R.id.toolbar) Toolbar toolbar;
     @BindView(R.id.tvDescription) TextView tvDescription;
     @BindView(R.id.tvTitleVideo) TextView tvTitle;
@@ -48,7 +51,7 @@ public class VideoDetailActivity extends AppCompatActivity {
     AppPreferenceTools appPreferenceTools;
     Snackbar snackbar;
     Realm realm;
-    RealmController realmController;
+    ActionBar actionBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,14 +65,17 @@ public class VideoDetailActivity extends AppCompatActivity {
         assert video != null;
         this.tvDescription.setText(video.getDescription());
         this.tvTitle.setText(video.getName());
-        this.realm = RealmController.with(this).getRealm();
+        this.realm = RealmController.getInstance(this).getRealm();
 
         Glide.with(this).load(video.getImageUrl()).centerCrop().fitCenter().into(imageView);
-
+        this.toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        actionBar = getSupportActionBar();
+        actionBar.setTitle(video.getName());
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+        collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE);
 
         this.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

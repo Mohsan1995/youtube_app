@@ -26,7 +26,7 @@ public class RealmController {
         );
     }
 
-    public static RealmController with(Context context) {
+    public static RealmController getInstance(Context context) {
 
         if (instance == null) {
             instance = new RealmController(context);
@@ -35,10 +35,6 @@ public class RealmController {
     }
 
 
-    public static RealmController getInstance() {
-
-        return instance;
-    }
 
     public Realm getRealm() {
 
