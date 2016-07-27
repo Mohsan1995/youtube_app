@@ -1,4 +1,4 @@
-package niya.mohsan.youtube;
+package niya.mohsan.youtube.activities;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -22,7 +22,9 @@ import com.bumptech.glide.Glide;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.realm.Realm;
 import niya.mohsan.video.R;
+import niya.mohsan.youtube.controller.RealmController;
 import niya.mohsan.youtube.model.Video;
 import niya.mohsan.youtube.utils.AppPreferenceTools;
 import niya.mohsan.youtube.utils.Message;
@@ -45,6 +47,8 @@ public class VideoDetailActivity extends AppCompatActivity {
     Video video;
     AppPreferenceTools appPreferenceTools;
     Snackbar snackbar;
+    Realm realm;
+    RealmController realmController;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,12 +57,13 @@ public class VideoDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_video);
         ButterKnife.bind(this);
 
-
         this.video = getIntent().getExtras().getParcelable("video");
         this.appPreferenceTools = new AppPreferenceTools(getApplicationContext());
         assert video != null;
         this.tvDescription.setText(video.getDescription());
         this.tvTitle.setText(video.getName());
+        this.realm = RealmController.with(this).getRealm();
+
         Glide.with(this).load(video.getImageUrl()).centerCrop().fitCenter().into(imageView);
 
         setSupportActionBar(toolbar);
@@ -106,6 +111,10 @@ public class VideoDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.lecture)
     public void lecture(){
+        this.realm.beginTransaction();
+        this.realm.copyToRealm(video);
+        this.realm.commitTransaction();
+
         Toast.makeText(VideoDetailActivity.this, video.getVideoUrl(), Toast.LENGTH_SHORT).show();
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getVideoUrl()));
         startActivity(browserIntent);

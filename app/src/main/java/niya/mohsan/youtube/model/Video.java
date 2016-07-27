@@ -7,11 +7,15 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.RealmObject;
+import io.realm.annotations.Ignore;
+import io.realm.annotations.PrimaryKey;
+
 /**
  * Created by mohsan on 19/06/16.
  */
 
-public class Video implements Parcelable{
+public class Video extends RealmObject implements Parcelable{
 
     @SerializedName("id")
     @Expose
@@ -28,6 +32,9 @@ public class Video implements Parcelable{
     @SerializedName("videoUrl")
     @Expose
     private String videoUrl;
+
+    public Video() {
+    }
 
     protected Video(Parcel in) {
         id = in.readString();

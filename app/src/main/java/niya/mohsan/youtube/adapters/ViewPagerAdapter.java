@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import niya.mohsan.youtube.fragment.FragmentHistoryVideo;
 import niya.mohsan.youtube.fragment.FragmentListVideo;
 import niya.mohsan.youtube.fragment.FragmentListVideoFavorite;
 
@@ -25,7 +26,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         }else if(position==1){
             fragment = new FragmentListVideoFavorite();
         }else if(position==2){
-            fragment= new FragmentListVideo();
+            fragment= new FragmentHistoryVideo();
         }
 
         return fragment;

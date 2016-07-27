@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import niya.mohsan.video.R;
 import niya.mohsan.youtube.adapters.YoutubeAdapter;
-import niya.mohsan.youtube.adapters.YoutubeFavoriteAdapter;
 import niya.mohsan.youtube.model.Video;
 import niya.mohsan.youtube.network.YoutubeProvider;
 import niya.mohsan.youtube.network.YoutubeService;
@@ -33,9 +31,8 @@ public class FragmentListVideoFavorite extends Fragment {
 
     @BindView(R.id.recylerView) RecyclerView recyclerView;
     private AppPreferenceTools appPreferenceTools;
+    private YoutubeAdapter youtubeAdapter;
     private List<Video> listVideoFavorite;
-    private List<Video> listVideo;
-    private  YoutubeAdapter youtubeAdapter;
 
     @Nullable
     @Override
@@ -52,8 +49,7 @@ public class FragmentListVideoFavorite extends Fragment {
         call.enqueue(new Callback<List<Video>>() {
             @Override
             public void onResponse(Call<List<Video>> call, Response<List<Video>> response) {
-                FragmentListVideoFavorite.this.listVideo = response.body();
-                initFavoriteVideo();
+                initFavoriteVideo(response.body());
             }
 
             @Override
@@ -68,7 +64,7 @@ public class FragmentListVideoFavorite extends Fragment {
         return v;
     }
 
-    private void initFavoriteVideo() {
+    private void initFavoriteVideo(List<Video> listVideo) {
         for (Video video: listVideo){
             if(this.appPreferenceTools.getVideoFavorite(video.getId())){
                 this.listVideoFavorite.add(video);

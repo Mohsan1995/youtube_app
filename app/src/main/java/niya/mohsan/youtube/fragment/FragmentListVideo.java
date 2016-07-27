@@ -28,8 +28,7 @@ import retrofit2.Response;
  */
 public class FragmentListVideo extends Fragment {
 
-    @BindView(R.id.recylerView)
-    RecyclerView recyclerView;
+    @BindView(R.id.recylerView) RecyclerView recyclerView;
 
     @Nullable
     @Override

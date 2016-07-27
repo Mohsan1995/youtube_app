@@ -11,9 +11,8 @@ import com.bumptech.glide.Glide;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import niya.mohsan.video.R;
-import niya.mohsan.youtube.VideoDetailActivity;
+import niya.mohsan.youtube.activities.VideoDetailActivity;
 import niya.mohsan.youtube.model.Video;
-import niya.mohsan.youtube.utils.AppPreferenceTools;
 
 /**
  * Created by mohsan on 22/06/16.
