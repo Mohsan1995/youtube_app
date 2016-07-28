@@ -36,11 +36,7 @@ public class VideoPlayerActivity extends YouTubeBaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_player);
         ButterKnife.bind(this);
-
-
         youTubePlayerView.initialize(Config.DEVELOPER_KEY,this);
-
-
     }
 
     @Override
