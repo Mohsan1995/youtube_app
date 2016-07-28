@@ -5,4 +5,8 @@
     <string name="remove_favorite">La vidéo a été supprimé des favoris</string>
     <string name="error_player">Erreur lors de l\'initialisation de youtube</string>
     <string name="go_back">Go Back</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+    <string name="maps">Maps</string>
+    <string name="profile">Profil</string>
 </resources>

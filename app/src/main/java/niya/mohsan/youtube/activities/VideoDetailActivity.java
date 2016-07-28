@@ -122,11 +122,11 @@ public class VideoDetailActivity extends AppCompatActivity {
         this.realm.copyToRealm(video);
         this.realm.commitTransaction();
 
-        //Toast.makeText(VideoDetailActivity.this, video.getVideoUrl(), Toast.LENGTH_SHORT).show();
-        //Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getVideoUrl()));
-        Intent intent =new Intent(this, VideoPlayerActivity.class);
-        intent.putExtra("url",getYouTubeVideoId(video.getVideoUrl()));
-        startActivity(intent);
+        Toast.makeText(VideoDetailActivity.this, video.getVideoUrl(), Toast.LENGTH_SHORT).show();
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(video.getVideoUrl()));
+        /*Intent intent =new Intent(this, VideoPlayerActivity.class);
+        intent.putExtra("url",getYouTubeVideoId(video.getVideoUrl()));*/
+        startActivity(browserIntent);
 
     }
 
