@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.app.Fragment;
 import android.content.Context;
+import android.util.Log;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -45,7 +46,7 @@ public class RealmController {
 
     //clear all objects from Book.class
     public void clearAll() {
-
+        Log.e("Delete database", "Delete historique");
         realm.beginTransaction();
         realm.delete(Video.class);
         realm.commitTransaction();

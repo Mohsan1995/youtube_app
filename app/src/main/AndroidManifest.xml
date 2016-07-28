@@ -23,6 +23,9 @@
         <activity
             android:name="niya.mohsan.youtube.activities.VideoPlayerActivity"/>
 
+        <service android:name="niya.mohsan.youtube.service.ServiceDatabase"/>
+        <receiver android:name="niya.mohsan.youtube.service.AlarmReceiver"/>
+
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
